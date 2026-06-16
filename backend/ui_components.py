@@ -92,12 +92,18 @@ def init_page(page_name):
     
     if st.session_state.get("analyzed", False):
         st.sidebar.markdown("### Analysis Ready")
-        st.sidebar.page_link("pages/dashboard.py", label="Placement Dashboard", icon="📊")
-        st.sidebar.page_link("pages/skill_gap.py", label="Skill Gap Analysis", icon="🔍")
-        st.sidebar.page_link("pages/roadmap.py", label="Career Roadmap", icon="📅")
-        st.sidebar.page_link("pages/projects.py", label="Project & Prep", icon="💼")
-        st.sidebar.page_link("pages/export_report.py", label="Export Report", icon="📄")
-        st.sidebar.page_link("pages/faq.py", label="Career FAQ", icon="❓")
+        if st.sidebar.button("📊 Placement Dashboard", use_container_width=True):
+            st.switch_page("pages/dashboard.py")
+        if st.sidebar.button("🔍 Skill Gap Analysis", use_container_width=True):
+            st.switch_page("pages/skill_gap.py")
+        if st.sidebar.button("📅 Career Roadmap", use_container_width=True):
+            st.switch_page("pages/roadmap.py")
+        if st.sidebar.button("💼 Project & Prep", use_container_width=True):
+            st.switch_page("pages/projects.py")
+        if st.sidebar.button("📄 Export Report", use_container_width=True):
+            st.switch_page("pages/export_report.py")
+        if st.sidebar.button("❓ Career FAQ", use_container_width=True):
+            st.switch_page("pages/faq.py")
     else:
         st.sidebar.markdown(
             "<p style='color: #888; font-size: 0.85rem; font-style: italic; margin-top: 10px;'>"
