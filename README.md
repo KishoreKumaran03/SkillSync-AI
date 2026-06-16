@@ -63,11 +63,16 @@ pip install -r requirements.txt
 ```
 
 ### 2. Configure Environment Variables
-Copy `.env.example` to a new file named `.env`:
+For local development, copy `.env.example` to a new file named `.env`:
 ```bash
 copy .env.example .env
 ```
-Open the `.env` file and insert your Groq API key:
+Add your Groq API key either in Streamlit Secrets or in `.env`:
+```toml
+# .streamlit/secrets.toml
+GROQ_API_KEY = "your_actual_groq_api_key_here"
+```
+or
 ```env
 GROQ_API_KEY=your_actual_groq_api_key_here
 ```

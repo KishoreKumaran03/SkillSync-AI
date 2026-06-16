@@ -107,9 +107,9 @@ def init_page(page_name):
     # Check API key configuration status for a helpful banner in the sidebar
     if not IS_API_KEY_CONFIGURED:
         if API_KEY_STATUS == "placeholder":
-            st.sidebar.warning("🔑 Offline Mode: GROQ_API_KEY is still the sample placeholder in .env. Add your real key.")
+            st.sidebar.warning("🔑 Offline Mode: GROQ_API_KEY is still the sample placeholder in Streamlit secrets or .env. Add your real key.")
         else:
-            st.sidebar.warning("🔑 Offline Mode: Groq API Key not detected in .env. Using local parser.")
+            st.sidebar.warning("🔑 Offline Mode: Groq API Key not detected in Streamlit secrets or .env. Using local parser.")
     elif st.session_state.get("api_key_exhausted", False):
         error_detail = st.session_state.get("api_error_detail")
         error_category = st.session_state.get("api_error_category")

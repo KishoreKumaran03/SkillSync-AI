@@ -15,6 +15,20 @@ try:
 except ImportError:
     Groq = None
 
+def _load_secret_value(name: str) -> str | None:
+    """Load and normalize a value from Streamlit secrets if available."""
+    try:
+        import streamlit as st
+        if name in st.secrets:
+            value = st.secrets[name]
+            if value is None:
+                return None
+            return str(value).strip().strip('"').strip("'")
+    except Exception:
+        pass
+    return None
+
+
 def _load_env_value(name: str) -> str | None:
     """Load and normalize a value from the project .env file."""
     env_path = Path(__file__).resolve().parents[1] / ".env"
@@ -23,6 +37,17 @@ def _load_env_value(name: str) -> str | None:
     if value is None:
         return None
     return value.strip().strip('"').strip("'")
+
+
+def _load_api_key() -> tuple[str | None, str | None]:
+    """Prefer Streamlit secrets, then fall back to .env."""
+    secret_value = _load_secret_value("GROQ_API_KEY")
+    if secret_value:
+        return secret_value, "secrets"
+    env_value = _load_env_value("GROQ_API_KEY")
+    if env_value:
+        return env_value, "env"
+    return None, None
 
 
 def _is_placeholder_api_key(value: str | None) -> bool:
@@ -36,7 +61,7 @@ def _is_placeholder_api_key(value: str | None) -> bool:
     }
 
 
-api_key = _load_env_value("GROQ_API_KEY")
+api_key, api_key_source = _load_api_key()
 
 # Check if API Key is set and valid
 IS_API_KEY_CONFIGURED = False
@@ -66,14 +91,20 @@ if api_key and not _is_placeholder_api_key(api_key):
         except Exception:
             pass
 else:
-    if api_key:
+    if api_key_source == "secrets":
+        error_msg = (
+            "[API Initialization] GROQ_API_KEY is set in Streamlit secrets, but it still matches a sample placeholder. "
+            "Replace it with your real Groq API key."
+        )
+        API_KEY_STATUS = "placeholder"
+    elif api_key_source == "env":
         error_msg = (
             "[API Initialization] GROQ_API_KEY is still set to the sample placeholder in .env. "
             "Replace it with your real Groq API key."
         )
         API_KEY_STATUS = "placeholder"
     else:
-        error_msg = "[API Initialization] Groq API Key not configured in .env (use GROQ_API_KEY)"
+        error_msg = "[API Initialization] Groq API Key not configured in Streamlit secrets or .env (use GROQ_API_KEY)"
     _initialization_error = error_msg
     logger.warning(error_msg)
     print(error_msg)
@@ -98,7 +129,7 @@ def _categorize_error(error: Exception) -> tuple[str, str]:
     # Check for authentication errors
     if "unauthenticated" in err_str or "401" in err_str or "unauthorized" in err_str or "invalid api key" in err_str:
         return "AUTH_ERROR", (
-            "API authentication failed. Please verify your Groq API key (GROQ_API_KEY) in .env is valid."
+            "API authentication failed. Please verify your Groq API key (GROQ_API_KEY) in Streamlit secrets or .env is valid."
         )
     
     # Check for permission errors
