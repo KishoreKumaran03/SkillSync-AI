@@ -88,7 +88,7 @@ def init_page(page_name):
 
     st.sidebar.markdown("### Quick Access")
     if st.sidebar.button("🏠 Home", use_container_width=True):
-        st.switch_page("app.py")
+        st.switch_page("pages/home.py")
     if st.sidebar.button("🧠 Career Guide", use_container_width=True):
         st.switch_page("pages/coach.py")
     

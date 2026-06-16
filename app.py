@@ -5,7 +5,7 @@ from home_page import render_home
 def build_pages():
     """Register the app pages in one place."""
     page_specs = [
-        (render_home, "Home", "🏠"),
+        ("pages/home.py", "Home", "🏠"),
         ("pages/coach.py", "Career Guide", "🧠"),
         ("pages/dashboard.py", "Placement Dashboard", "📊"),
         ("pages/faq.py", "Career FAQ", "❓"),
