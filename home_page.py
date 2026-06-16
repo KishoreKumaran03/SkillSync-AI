@@ -104,7 +104,8 @@ def render_home():
             uploaded_file = st.file_uploader(
                 "Drag & Drop or Upload Resume",
                 type=["pdf", "docx"],
-                help="Upload PDF or DOCX format resumes only"
+                help="Upload PDF or DOCX format resumes only",
+                key=f"resume_uploader_{st.session_state.get('resume_uploader_key', 0)}"
             )
 
         # Core Action Button

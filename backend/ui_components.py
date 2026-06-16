@@ -25,6 +25,22 @@ def load_css():
             </style>
         """, unsafe_allow_html=True)
 
+def reset_analysis_state():
+    """
+    Clear all analysis-related session state so the user can upload a new resume.
+    """
+    st.session_state["analyzed"] = False
+    st.session_state["resume_text"] = ""
+    st.session_state["resume_details"] = {}
+    st.session_state["target_role"] = ""
+    st.session_state["analysis_results"] = {}
+    st.session_state["roadmap"] = None
+    st.session_state["projects"] = None
+    st.session_state["certifications"] = None
+    st.session_state["interview_questions"] = None
+    st.session_state["faq"] = None
+    st.session_state["resume_uploader_key"] = st.session_state.get("resume_uploader_key", 0) + 1
+
 def init_page(page_name):
     """
     Initializes the page configuration, injects CSS, and renders the shared sidebar.
@@ -88,6 +104,9 @@ def init_page(page_name):
 
     st.sidebar.markdown("### Quick Access")
     if st.sidebar.button("🏠 Home", use_container_width=True):
+        st.switch_page("pages/home.py")
+    if st.sidebar.button("🔄 New Resume", use_container_width=True):
+        reset_analysis_state()
         st.switch_page("pages/home.py")
     if st.sidebar.button("🧠 Career Guide", use_container_width=True):
         st.switch_page("pages/coach.py")
