@@ -1,0 +1,272 @@
+/* Import Modern Typography from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Apply Global Fonts & Custom Transitions */
+html, body, [class*="css"] {
+    font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px 0 rgba(100, 108, 255, 0.15);
+    border-color: rgba(100, 108, 255, 0.25);
+}
+
+/* Style all Plotly Charts like Glassmorphism Cards */
+div[data-testid="stPlotlyChart"] {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden !important;
+}
+
+div[data-testid="stPlotlyChart"]:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px 0 rgba(100, 108, 255, 0.15);
+    border-color: rgba(100, 108, 255, 0.25);
+}
+
+/* Metric Cards */
+.metric-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.metric-value {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #646cff, #9b51e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 8px 0;
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+
+/* Gradient Texts */
+.gradient-text {
+    background: linear-gradient(90deg, #646cff 0%, #a259ff 50%, #e056fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* Custom Interactive Horizontal Curvy Timeline Styles */
+.horizontal-timeline-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.horizontal-timeline {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    height: 1000px; /* Increased to 1000px to guarantee no vertical cutoff */
+    min-width: 100%;
+    width: max-content;
+}
+
+.horizontal-timeline::before {
+    content: '';
+    position: absolute;
+    top: 460px; /* Centered in 1000px */
+    left: 0;
+    right: 0;
+    height: 80px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="640" height="80"><path d="M0,40 C 80,40 80,80 160,80 C 240,80 240,40 320,40 C 400,40 400,0 480,0 C 560,0 560,40 640,40" fill="none" stroke="%23646cff" stroke-width="6"/></svg>');
+    background-repeat: repeat-x;
+    background-position: left center;
+}
+
+.timeline-item {
+    display: inline-block;
+    position: relative;
+    width: 320px;
+    height: 1000px;
+    vertical-align: top;
+}
+
+.timeline-dot {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 148px; /* Centered in the 320px block */
+    background-color: #1e1e24;
+    border: 4px solid #646cff;
+    border-radius: 50%;
+    z-index: 2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.3);
+    box-shadow: 0 0 15px #e056fd;
+    border-color: #e056fd;
+}
+
+/* Even nodes (Troughs) sit on the bottom curve */
+.position-bottom .timeline-dot {
+    top: 528px; /* 460 + 80 - 12 */
+}
+
+/* Odd nodes (Peaks) sit on the top curve */
+.position-top .timeline-dot {
+    top: 448px; /* 460 - 12 */
+}
+
+.timeline-content {
+    position: absolute;
+    left: 20px;
+    width: 280px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    white-space: normal; /* allow text wrapping */
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:hover .timeline-content {
+    transform: translateY(-5px);
+    border-color: rgba(100, 108, 255, 0.3);
+}
+
+/* For nodes on the bottom curve (Troughs), card goes BELOW the dot */
+.position-bottom .timeline-content {
+    top: 580px; 
+}
+
+/* For nodes on the top curve (Peaks), card goes ABOVE the dot */
+.position-top .timeline-content {
+    bottom: 580px; 
+}
+
+/* Connector lines */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    left: 159px;
+    width: 2px;
+    border-left: 2px dashed rgba(255, 255, 255, 0.2);
+    z-index: 0;
+}
+
+.position-bottom::after {
+    top: 552px;
+    height: 28px; 
+}
+
+.position-top::after {
+    bottom: 552px;
+    height: 28px; 
+}
+
+.timeline-week {
+    font-weight: 800;
+    font-family: 'Outfit', sans-serif;
+    color: #646cff;
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+.timeline-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.timeline-details {
+    font-size: 0.9rem;
+    color: #cccccc;
+    line-height: 1.5;
+}
+
+/* Badge Styles */
+.custom-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 20px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    text-transform: capitalize;
+}
+
+.badge-matched {
+    background-color: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.badge-missing {
+    background-color: rgba(231, 76, 60, 0.15);
+    color: #e74c3c;
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.badge-recommended {
+    background-color: rgba(52, 152, 219, 0.15);
+    color: #3498db;
+    border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+/* Clean Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 108, 255, 0.3);
+}
