@@ -164,7 +164,6 @@ def init_page(page_name):
     st.sidebar.markdown(
         "<div style='text-align: center; color: #666; font-size: 0.8rem;'>"
         "SkillSync AI v1.0.0<br/>"
-        "Smart India Hackathon Demo"
         "</div>", 
         unsafe_allow_html=True
     )

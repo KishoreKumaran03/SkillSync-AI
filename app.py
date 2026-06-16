@@ -133,7 +133,7 @@ else:
                     text = extract_text(uploaded_file.name, file_bytes)
                     st.session_state["resume_text"] = text
 
-                    # B. Extract Details via Groq
+                    # B. Extract Details via Gemini
                     details = analyze_resume(text)
                     st.session_state["resume_details"] = details
 
