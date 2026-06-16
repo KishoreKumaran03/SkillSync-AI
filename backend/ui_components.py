@@ -85,8 +85,22 @@ def init_page(page_name):
         """, 
         unsafe_allow_html=True
     )
+
+    st.sidebar.markdown("### Quick Access")
+    if st.sidebar.button("🧠 Career Guide", use_container_width=True):
+        st.switch_page("pages/coach.py")
     
-    if not st.session_state.get("analyzed", False):
+    if st.session_state.get("analyzed", False):
+        st.sidebar.markdown("### Analysis Ready")
+        st.sidebar.page_link("pages/dashboard.py", label="Placement Dashboard", icon="📊")
+        st.sidebar.page_link("pages/skill_gap.py", label="Skill Gap Analysis", icon="🔍")
+        st.sidebar.page_link("pages/roadmap.py", label="Career Roadmap", icon="📅")
+        st.sidebar.page_link("pages/projects.py", label="Project & Prep", icon="💼")
+        st.sidebar.page_link("pages/interview.py", label="Interview Prep", icon="🎤")
+        st.sidebar.page_link("pages/resume_analysis.py", label="Resume Analysis", icon="📝")
+        st.sidebar.page_link("pages/export_report.py", label="Export Report", icon="📄")
+        st.sidebar.page_link("pages/faq.py", label="Career FAQ", icon="❓")
+    else:
         st.sidebar.markdown(
             "<p style='color: #888; font-size: 0.85rem; font-style: italic; margin-top: 10px;'>"
             "Upload resume on Home to unlock all pages.</p>", 
