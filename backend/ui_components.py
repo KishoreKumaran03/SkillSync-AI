@@ -100,8 +100,6 @@ def init_page(page_name):
             st.switch_page("pages/roadmap.py")
         if st.sidebar.button("💼 Project & Prep", use_container_width=True):
             st.switch_page("pages/projects.py")
-        if st.sidebar.button("📄 Export Report", use_container_width=True):
-            st.switch_page("pages/export_report.py")
         if st.sidebar.button("❓ Career FAQ", use_container_width=True):
             st.switch_page("pages/faq.py")
     else:

@@ -8,7 +8,6 @@ def build_pages():
         (render_home, "Home", "🏠"),
         ("pages/coach.py", "Career Guide", "🧠"),
         ("pages/dashboard.py", "Placement Dashboard", "📊"),
-        ("pages/export_report.py", "Export Report", "📄"),
         ("pages/faq.py", "Career FAQ", "❓"),
         ("pages/projects.py", "Project & Prep", "💼"),
         ("pages/roadmap.py", "Career Roadmap", "📅"),

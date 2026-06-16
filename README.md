@@ -16,7 +16,6 @@
 7. **Portfolio Recommendations:** Suggests tailored Beginner, Intermediate, and Advanced projects to bridge skill gaps.
 8. **Certification Matches:** Recommends relevant certifications from NPTEL, Coursera, Google, Microsoft, and AWS.
 10. **Placement Readiness Dashboard:** Includes dynamic visualizations (Placement Gauge, Skills Radar Chart, and Alternative Career Compatibility Matrix) using Plotly.
-11. **PDF Report Exporter:** Compiles all session analytics into a professionally styled PDF report using ReportLab for offline review.
 
 ---
 
@@ -34,7 +33,6 @@ SkillSyncAI/
 │   ├── roadmap.py              # 3-Month interactive timeline learning roadmap
 │   ├── projects.py             # Level-based recommended projects & certs
 │   ├── dashboard.py            # Readiness score, Radar/Bar/Pie charts
-│   └── export_report.py        # PDF Report builder and downloader
 ├── backend/                    # Python backend logic & services
 │   ├── parser.py               # PDF and DOCX text extractor
 │   ├── gap_engine.py           # Skill comparison logic and readiness score calculations
@@ -96,4 +94,3 @@ This launches a browser tab at `http://localhost:8501`.
 5. **Analyze Gaps:** Check **Skill Gap Analysis** to see progress bars and pie charts indicating missing vs. matched skills.
 6. **Dashboard Review:** Open **Placement Dashboard** to see the readiness gauge, categories radar chart, and alternative career compatibility bars.
 7. **Get Study Guide:** Go to **Career Roadmap** and **Project Recommendations** to view the timeline roadmap, suggested course matches, and coding projects.
-9. **Export PDF:** Go to **Export Report** and click download to get a formatted PDF summary of your entire profile.
