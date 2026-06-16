@@ -51,6 +51,17 @@ def render_home():
             unsafe_allow_html=True
         )
 
+        st.markdown(
+            "<p style='text-align:center; color:#aaa; margin-bottom: 10px;'>Need to analyze a different resume?</p>",
+            unsafe_allow_html=True
+        )
+        reset_col1, reset_col2, reset_col3 = st.columns([1, 1, 1])
+        with reset_col2:
+            if st.button("🔄 Upload Another Resume", use_container_width=True):
+                from backend.ui_components import reset_analysis_state
+                reset_analysis_state()
+                st.rerun()
+
         # Render quick navigation buttons in columns
         cols = st.columns(5)
         with cols[0]:

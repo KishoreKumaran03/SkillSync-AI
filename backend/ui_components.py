@@ -105,9 +105,6 @@ def init_page(page_name):
     st.sidebar.markdown("### Quick Access")
     if st.sidebar.button("🏠 Home", use_container_width=True):
         st.switch_page("pages/home.py")
-    if st.sidebar.button("🔄 New Resume", use_container_width=True):
-        reset_analysis_state()
-        st.switch_page("pages/home.py")
     if st.sidebar.button("🧠 Career Guide", use_container_width=True):
         st.switch_page("pages/coach.py")
     
