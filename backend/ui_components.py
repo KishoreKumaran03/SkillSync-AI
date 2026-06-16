@@ -20,6 +20,8 @@ def load_css():
                 .glass-card { background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 20px; margin-bottom: 15px; }
                 .metric-card { border: 1px solid #333; padding: 15px; border-radius: 8px; text-align: center; }
                 .gradient-text { background: linear-gradient(90deg, #646cff, #e056fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+                section[data-testid="stSidebarNav"] { display: none; }
+                div[data-testid="stSidebarNav"] { display: none; }
             </style>
         """, unsafe_allow_html=True)
 
@@ -84,18 +86,7 @@ def init_page(page_name):
         unsafe_allow_html=True
     )
     
-    # Custom Clean Navigation
-    st.sidebar.markdown("### Navigation")
-    st.sidebar.page_link("app.py", label="Home", icon="🏠")
-    if st.sidebar.button("🧠 Career Guide", use_container_width=True):
-        st.switch_page("pages/coach.py")
-    if st.session_state.get("analyzed", False):
-        st.sidebar.page_link("pages/dashboard.py", label="Placement Dashboard", icon="📊")
-        st.sidebar.page_link("pages/skill_gap.py", label="Skill Gap Analysis", icon="🔍")
-        st.sidebar.page_link("pages/roadmap.py", label="Career Roadmap", icon="📅")
-        st.sidebar.page_link("pages/projects.py", label="Project & Prep", icon="💼")
-        st.sidebar.page_link("pages/faq.py", label="Career FAQ", icon="❓")
-    else:
+    if not st.session_state.get("analyzed", False):
         st.sidebar.markdown(
             "<p style='color: #888; font-size: 0.85rem; font-style: italic; margin-top: 10px;'>"
             "Upload resume on Home to unlock all pages.</p>", 

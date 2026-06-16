@@ -9,12 +9,6 @@ from backend.groq_service import analyze_resume
 # 1. Initialize UI elements, styling, and session variables via helper
 analyzed = init_page("Home")
 
-# Make the coach entry visible on the Home page even if the shared sidebar module
-# is still cached in the running Streamlit session.
-st.sidebar.markdown("### Quick Access")
-if st.sidebar.button("🧠 Career Guide", use_container_width=True, key="home_coach_sidebar"):
-    st.switch_page("pages/coach.py")
-
 # 2. Hero Section
 st.markdown(
     """
