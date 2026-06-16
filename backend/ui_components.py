@@ -96,8 +96,6 @@ def init_page(page_name):
         st.sidebar.page_link("pages/skill_gap.py", label="Skill Gap Analysis", icon="🔍")
         st.sidebar.page_link("pages/roadmap.py", label="Career Roadmap", icon="📅")
         st.sidebar.page_link("pages/projects.py", label="Project & Prep", icon="💼")
-        st.sidebar.page_link("pages/interview.py", label="Interview Prep", icon="🎤")
-        st.sidebar.page_link("pages/resume_analysis.py", label="Resume Analysis", icon="📝")
         st.sidebar.page_link("pages/export_report.py", label="Export Report", icon="📄")
         st.sidebar.page_link("pages/faq.py", label="Career FAQ", icon="❓")
     else:
